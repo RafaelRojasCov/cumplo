@@ -41,6 +41,15 @@ class App extends Component {
                   ticks: {
                       beginAtZero:false
                   }
+              }],
+              xAxes: [{
+                type: 'time',
+                position: 'bottom',
+                time: {
+                  displayFormats: {'day': 'DD MMM'},
+                  tooltipFormat: 'DD/MM/YY',
+                  unit: 'day',
+                 }
               }]
           }
       }
@@ -55,10 +64,10 @@ class App extends Component {
         let chartValues = [];
         
 				if (field.toLowerCase() === 'dolar') {
-					chartLabels = data.Dolares.map( (el) => el.Fecha.split('-')[2]);
+					chartLabels = data.Dolares.map( (el) => el.Fecha);
 					chartValues = data.Dolares.map( (el) => el.Valor.replace(',','.'));
 				} else {
-					chartLabels = data.UFs.map( (el) => el.Fecha.split('-')[2]);
+					chartLabels = data.UFs.map( (el) => el.Fecha);
 					chartValues = data.UFs.map( (el) => el.Valor.replace('.','').replace(',','.'));
         }
 
@@ -125,7 +134,7 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <h1>Indicadores del dolar y UF</h1>
-          <p>Por favor seleccione una fecha de inicio, término del mismo mes y el indicador para actualizar el gráfico</p>
+          <p>Por favor seleccione una fecha de inicio, fecha de término  y el indicador para actualizar el gráfico</p>
           <section>
             <form className="form">
               <div className="row">
