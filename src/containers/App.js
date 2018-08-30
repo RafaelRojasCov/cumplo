@@ -39,7 +39,7 @@ class App extends Component {
       options: { scales: {
               yAxes: [{
                   ticks: {
-                      beginAtZero:true
+                      beginAtZero:false
                   }
               }]
           }
@@ -168,9 +168,17 @@ class App extends Component {
             />
           </section>
           <section>
-            <span className="mr-3">Valor promedio: {this.state.avgValue} </span>
-            <span className="mr-3">Valor minimo: {this.state.minValue} </span>
-            <span className="mr-3">Valor máximo: {this.state.maxValue} </span>
+            <div className="row">
+              <div className="col">
+                <span>Valor promedio: {this.state.avgValue} </span>
+              </div>
+              <div className="col">
+                <span>Valor minimo: {this.state.minValue} </span>
+              </div>
+              <div className="col">
+                <span>Valor máximo: {this.state.maxValue} </span>
+              </div>
+            </div>
           </section>
         </div>
 
