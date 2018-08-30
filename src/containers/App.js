@@ -47,7 +47,7 @@ class App extends Component {
                 position: 'bottom',
                 time: {
                   displayFormats: {'day': 'DD MMM'},
-                  tooltipFormat: 'DD/MM/YY',
+                  tooltipFormat: 'DD MMM YYYY',
                   unit: 'day',
                  }
               }]
