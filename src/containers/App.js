@@ -14,24 +14,9 @@ class App extends Component {
   constructor(){
     super();
     this.state = { 
-      chartData: {
-        labels: [],
-        datasets: [
-          {
-            label: 'Dolar',
-            data: [],
-            backgroundColor: [
-              'rgba(255, 206, 86, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 206, 86, 1)'
-            ],
-            borderWidth: 1
-          }
-        ]
-      },
-      dateStartField: '2018-07-01',
-      dateEndField: '2018-07-31',
+      chartData: {},
+      dateStartField: '2018-01-01',
+      dateEndField: '2018-01-31',
       indicatorField: 'Dolar',
       avgValue: '',
       minValue: '',
@@ -60,15 +45,18 @@ class App extends Component {
     fetch(query)
       .then(response => response.json())
 			.then((data) => {
-				let chartLabels = [];
-        let chartValues = [];
-        
+				let chartLabels, chartValues, backgroundColor, borderColor;
+
 				if (field.toLowerCase() === 'dolar') {
 					chartLabels = data.Dolares.map( (el) => el.Fecha);
-					chartValues = data.Dolares.map( (el) => el.Valor.replace(',','.'));
+          chartValues = data.Dolares.map( (el) => el.Valor.replace(',','.'));
+          backgroundColor = 'rgba(36, 136, 237, 0.2)';
+          borderColor = 'rgba(36, 136, 237, 1)';
 				} else {
 					chartLabels = data.UFs.map( (el) => el.Fecha);
-					chartValues = data.UFs.map( (el) => el.Valor.replace('.','').replace(',','.'));
+          chartValues = data.UFs.map( (el) => el.Valor.replace('.','').replace(',','.'));
+          backgroundColor = 'rgba(36, 237, 73, 0.2)';
+          borderColor = 'rgba(36, 237, 73, 1)';
         }
 
 				const dataCreated = {
@@ -78,13 +66,10 @@ class App extends Component {
                     {
                       label: field,
                       data: chartValues,
-                      backgroundColor: [
-                        'rgba(255, 206, 86, 0.2)'
-                      ],
-                      borderColor: [
-                        'rgba(255, 206, 86, 1)'
-                      ],
-                      borderWidth: 1
+                      backgroundColor: backgroundColor,
+                      borderColor: borderColor,
+                      borderWidth: 1,
+                      pointStyle: 'rectRounded'
                     }
                   ]
                 }
